@@ -54,7 +54,12 @@ public class GameManager : MonoBehaviour
         timeText.text = time.ToString("N2");
 
         resultText.text = matchCount.ToString();
-
+        //일정시간 경과시 경고
+        if (time >= 20.0f)
+        {
+            //Text를 빨간색으로
+            timeText.color = Color.red;
+        }
         if (time >= 30.0f)
         {
             time = 30.0f;
