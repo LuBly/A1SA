@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,9 +10,12 @@ public class GameManager : MonoBehaviour
     public Card secondCard;
 
     public TextMeshProUGUI timeText;
-    public GameObject endText;
+    public GameObject endPanel;
+
+    public Text resultText;
 
     public int cardCount = 0;
+    public int matchCount = 0;
 
     AudioSource audioSource;
     public AudioClip clip;
@@ -35,11 +39,13 @@ public class GameManager : MonoBehaviour
         time += Time.deltaTime;
         timeText.text = time.ToString("N2");
 
+        resultText.text = matchCount.ToString();
+
         if (time >= 30.0f)
         {
             time = 30.0f;
             Time.timeScale = 0.0f;
-            endText.SetActive(true);
+            endPanel.SetActive(true);
         }
     }
 
@@ -55,7 +61,7 @@ public class GameManager : MonoBehaviour
             if(cardCount == 0)
             {
                 Time.timeScale = 0.0f;
-                endText.SetActive(true);
+                endPanel.SetActive(true);
             }
         }
         else
@@ -64,6 +70,8 @@ public class GameManager : MonoBehaviour
             firstCard.CloseCard();
             secondCard.CloseCard();
         }
+
+        matchCount += 1;
 
         // 카드 초기화
         firstCard = null;
