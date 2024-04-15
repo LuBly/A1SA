@@ -17,13 +17,13 @@ public class GameManager : MonoBehaviour
     public GameObject nameText;
     public GameObject endText;
 
-    // ���â�� �����ִ� �ð�
-    [Header("���â�� �����ִ� �ð�")]
+    // 결과창 
+    [Header("결과창이 남아있는 시간")]
     public float resultDelay = 0.5f;
-    [Header("���н� �پ��� �ð�")]
+    [Header("실패시 줄어드는 시간")]
     public float penaltyTime = 2.0f;
     
-    [Header("���� �� ���������� �����̴� �ð�")]
+    [Header("실패 시 빨간색으로 깜빡이는 시간")]
     public float penaltyDelay = 0.2f;
 
     public int cardCount = 0;
@@ -69,12 +69,12 @@ public class GameManager : MonoBehaviour
         {
             int userIdx = firstCard.idx % 5;
             audioSource.PlayOneShot(clip);
-            // 0.5�ʰ� ��� �޼��� ���
+            // 0.5초 동안 성공한 user 이름 노출
             nameText.SetActive(true);
-            nameText.GetComponent<TextMeshProUGUI>().text = "���� " + userNames[userIdx];
+            nameText.GetComponent<TextMeshProUGUI>().text = "나는 " + userNames[userIdx];
             nameText.GetComponent<TextMeshProUGUI>().color = Color.white;
             Invoke("CloseNameText", resultDelay);
-            // �ı��ض�.
+            // 카드 삭제
             firstCard.DestroyCard();
             secondCard.DestroyCard();
             cardCount -= 2;
@@ -86,16 +86,16 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            // 0.5�ʰ� ��� �޼��� ���
+            // 0.5초 동안 timer 색 red로 변경
             nameText.SetActive(true);
-            nameText.GetComponent<TextMeshProUGUI>().text = "���Ф�";
+            nameText.GetComponent<TextMeshProUGUI>().text = "실패ㅋ";
             nameText.GetComponent<TextMeshProUGUI>().color = Color.red;
             Invoke("CloseNameText", resultDelay);
-            // �ð� ���� (2��)
+            // 시간 감소 (2초)
             time += penaltyTime;
             StartCoroutine(ActiveTimePenalty(penaltyDelay));
             
-            // �ݾƶ�.
+            // 카드 닫기.
             firstCard.CloseCard();
             secondCard.CloseCard();
         }
