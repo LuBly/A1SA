@@ -9,12 +9,18 @@ public class GameManager : MonoBehaviour
     public Card secondCard;
 
     public TextMeshProUGUI timeText;
+    public GameObject nameText;
     public GameObject endText;
 
+    // 결과창이 남아있는 시간
+    [Header("결과창이 남아있는 시간")]
+    public float resultDelay = 0.5f;
     public int cardCount = 0;
+    public AudioClip clip;
+
+    public string[] userNames = new string[5];
 
     AudioSource audioSource;
-    public AudioClip clip;
     float time = 0.0f;
     
 
@@ -47,7 +53,13 @@ public class GameManager : MonoBehaviour
     {
         if(firstCard.idx == secondCard.idx)
         {
+            int userIdx = firstCard.idx % 5;
             audioSource.PlayOneShot(clip);
+            // 0.5초간 결과 메세지 출력
+            nameText.SetActive(true);
+            nameText.GetComponent<TextMeshProUGUI>().text = "나는 " + userNames[userIdx];
+            nameText.GetComponent<TextMeshProUGUI>().color = Color.white;
+            Invoke("CloseNameText", resultDelay);
             // 파괴해라.
             firstCard.DestroyCard();
             secondCard.DestroyCard();
@@ -60,6 +72,11 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            // 0.5초간 결과 메세지 출력
+            nameText.SetActive(true);
+            nameText.GetComponent<TextMeshProUGUI>().text = "실패ㅋ";
+            nameText.GetComponent<TextMeshProUGUI>().color = Color.red;
+            Invoke("CloseNameText", resultDelay);
             // 닫아라.
             firstCard.CloseCard();
             secondCard.CloseCard();
@@ -68,5 +85,10 @@ public class GameManager : MonoBehaviour
         // 카드 초기화
         firstCard = null;
         secondCard = null;
+    }
+
+    public void CloseNameText()
+    {
+        nameText.SetActive(false);
     }
 }
