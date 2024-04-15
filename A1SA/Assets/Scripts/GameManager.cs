@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -15,6 +16,12 @@ public class GameManager : MonoBehaviour
     // 결과창이 남아있는 시간
     [Header("결과창이 남아있는 시간")]
     public float resultDelay = 0.5f;
+    [Header("실패시 줄어드는 시간")]
+    public float penaltyTime = 2.0f;
+    
+    [Header("실패 시 빨간색으로 깜빡이는 시간")]
+    public float penaltyDelay = 0.2f;
+
     public int cardCount = 0;
     public AudioClip clip;
 
@@ -77,6 +84,10 @@ public class GameManager : MonoBehaviour
             nameText.GetComponent<TextMeshProUGUI>().text = "실패ㅋ";
             nameText.GetComponent<TextMeshProUGUI>().color = Color.red;
             Invoke("CloseNameText", resultDelay);
+            // 시간 감소 (2초)
+            time += penaltyTime;
+            StartCoroutine(ActiveTimePenalty(penaltyDelay));
+            
             // 닫아라.
             firstCard.CloseCard();
             secondCard.CloseCard();
@@ -86,7 +97,12 @@ public class GameManager : MonoBehaviour
         firstCard = null;
         secondCard = null;
     }
-
+    IEnumerator ActiveTimePenalty(float penaltyDelay)
+    {
+        timeText.color = Color.red;
+        yield return new WaitForSeconds(penaltyDelay);
+        timeText.color = Color.white;
+    }
     public void CloseNameText()
     {
         nameText.SetActive(false);

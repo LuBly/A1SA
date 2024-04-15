@@ -982,6 +982,8 @@ MonoBehaviour:
   nameText: {fileID: 484704890}
   endText: {fileID: 690807223}
   resultDelay: 0.7
+  penaltyTime: 2
+  penaltyDelay: 0.2
   cardCount: 0
   clip: {fileID: 8300000, guid: 46361e1eff277a442aaf302b2779b0eb, type: 3}
   userNames:
