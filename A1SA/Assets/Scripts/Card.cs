@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
+    public SpriteRenderer backImage;
     public GameObject front;
     public GameObject back;
 
@@ -19,6 +20,7 @@ public class Card : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
     }
+    
     public void Setting(int num)
     {
         idx = num;
@@ -28,7 +30,7 @@ public class Card : MonoBehaviour
     public void OpenCard()
     {
         if (GameManager.Instance.secondCard != null) return;
-
+        
         audioSource.PlayOneShot(clip);
         //소리들이 겹치지 않음
         anim.SetBool("isOpen", true);
@@ -64,6 +66,7 @@ public class Card : MonoBehaviour
     public void CloseCard()
     {
         Invoke("CloseCardInvoke", 1.0f);
+        backImage.color = Color.gray;
     }
 
     public void CloseCardInvoke()

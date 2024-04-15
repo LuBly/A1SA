@@ -510,6 +510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfe7b1734a2f86a4e8ad2c17f37dd5a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backImage: {fileID: 5126260913631695231}
   front: {fileID: 7042236563835890561}
   back: {fileID: 2375605360477965204}
   anim: {fileID: 1569008816511853825}
