@@ -42,8 +42,10 @@ public class GameManager : MonoBehaviour
 
     public bool isReady = false;
     public string[] userNames = new string[5];
+    
+    [Header("Success Audio")]
+    public AudioClip clip;
 
-    AudioClip clip;
     AudioSource audioSource;
 
     string key = "bestScore";
@@ -63,10 +65,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         audioSource = GetComponent<AudioSource>();
-        audioSource.clip = this.clip;
-        audioSource.Play();
-        //시작할때 BGM의 속도 정상화
-        audioSource.pitch = 1.0f;
+        audioSource.clip = clip;
     }
 
     private void Update()
