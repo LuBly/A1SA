@@ -4,28 +4,48 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    public SpriteRenderer backImage;
+    
     public GameObject front;
     public GameObject back;
 
     public Animator anim;
 
     public SpriteRenderer frontImage;
-
+    public SpriteRenderer backImage;
     public int idx;
 
     AudioSource audioSource;
     public AudioClip clip;
+
+    public float CloseTime = 0f; // 5초 동안 아무것도 하지 않은 후 카드를 닫는다.
+    private bool isOpened = false; // 카드가 열렸는지 여부를 확인.
+
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
     }
-    
+    private void Update()
+    {
+        if (isOpened)
+        {
+            //시간 측정
+            CloseTime += Time.deltaTime;
+            // 5초가 지나면 카드를 닫는다.
+            if (CloseTime >= 5.0f)
+            {
+                CloseCard();
+                CloseTime = 0f; // CloseTime 초기화.
+                GameManager.Instance.firstCard = null; //첫번째 카드를 뽑은 데이터 초기화
+            }
+        }
+    }
+
     public void Setting(int num)
     {
         idx = num;
         frontImage.sprite = Resources.Load<Sprite>($"rtan{idx}");
     }
+
 
     public void OpenCard()
     {
@@ -37,12 +57,16 @@ public class Card : MonoBehaviour
         front.SetActive(true);
         back.SetActive(false);
 
+        isOpened = true;
+
+
         // firstCard가 비었다면
-        if(GameManager.Instance.firstCard == null)
+        if (GameManager.Instance.firstCard == null)
         {
             // firstCard에 내 정보를 넘겨준다.
             GameManager.Instance.firstCard = this;
         }
+        
         // firstCard가 비어있지 않다면
         else
         {
@@ -67,6 +91,7 @@ public class Card : MonoBehaviour
     {
         Invoke("CloseCardInvoke", 1.0f);
         backImage.color = Color.gray;
+        isOpened = false;
     }
 
     public void CloseCardInvoke()
@@ -74,5 +99,6 @@ public class Card : MonoBehaviour
         anim.SetBool("isOpen", false);
         front.SetActive(false);
         back.SetActive(true);
+        
     }
 }
