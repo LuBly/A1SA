@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public Text resultText;
     public GameObject nameText;
     public GameObject endText;
+    public AudioClip clip;
 
     public Animator endAnim;
 
@@ -30,7 +31,6 @@ public class GameManager : MonoBehaviour
 
     public int cardCount = 0;
     public int matchCount = 0;
-    public AudioClip clip;
 
     public string[] userNames = new string[5];
 
@@ -49,7 +49,12 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         audioSource = GetComponent<AudioSource>();
+        audioSource.clip = this.clip;
+        audioSource.Play();
+        //시작할때 BGM의 속도 정상화
+        audioSource.pitch = 1.0f;
     }
+
     private void Update()
     {
         time += Time.deltaTime;
@@ -61,6 +66,8 @@ public class GameManager : MonoBehaviour
         {
             //Text를 빨간색으로
             timeText.color = Color.red;
+            //BGM Pitch(재생속도)를 1.3로 변경
+            audioSource.pitch = 1.3f;
         }
         if (time >= 30.0f)
         {
@@ -75,8 +82,8 @@ public class GameManager : MonoBehaviour
     {
         if (firstCard.idx == secondCard.idx)
         {
-            int userIdx = firstCard.idx % 5;
             audioSource.PlayOneShot(clip);
+            int userIdx = firstCard.idx % 5;
             // 0.5초 동안 성공한 user 이름 노출
             nameText.SetActive(true);
             nameText.GetComponent<TextMeshProUGUI>().text = "나는 " + userNames[userIdx];
@@ -111,7 +118,6 @@ public class GameManager : MonoBehaviour
 
         matchCount += 1;
 
-        // ī�� �ʱ�ȭ
         firstCard = null;
         secondCard = null;
     }

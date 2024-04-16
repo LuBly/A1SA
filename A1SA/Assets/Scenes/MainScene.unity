@@ -287,7 +287,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.108
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1101,12 +1101,12 @@ MonoBehaviour:
   nameText: {fileID: 484704890}
   endText: {fileID: 690807223}
   endAnim: {fileID: 732590646}
+  clip: {fileID: 8300000, guid: a8d8d623e236749af92988c012d91dae, type: 3}
   resultDelay: 0.7
   penaltyTime: 2
   penaltyDelay: 0.2
   cardCount: 0
   matchCount: 0
-  clip: {fileID: 8300000, guid: 46361e1eff277a442aaf302b2779b0eb, type: 3}
   userNames:
   - "\uD604\uD638"
   - "\uC138\uB098"
@@ -1140,7 +1140,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.69
   m_Pitch: 1
   Loop: 0
   Mute: 0
