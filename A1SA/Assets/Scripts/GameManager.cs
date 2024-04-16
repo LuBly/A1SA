@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     public int cardCount = 0;
     public int matchCount = 0;
 
+    public bool isReady = false;
+
     public string[] userNames = new string[5];
 
     AudioClip clip;
@@ -56,7 +58,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        time += Time.deltaTime;
+        if (isReady)
+            time += Time.deltaTime;
         timeText.text = time.ToString("N2");
 
         resultText.text = matchCount.ToString();
