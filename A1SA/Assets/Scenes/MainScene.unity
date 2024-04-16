@@ -1269,6 +1269,7 @@ MonoBehaviour:
   penaltyDelay: 0.2
   cardCount: 0
   matchCount: 0
+  isReady: 0
   userNames:
   - "\uD604\uD638"
   - "\uC138\uB098"

@@ -26,6 +26,9 @@ public class Card : MonoBehaviour
     }
     private void Update()
     {
+        if(GameManager.Instance.isReady)
+            anim.SetBool("isReady", true);
+        
         if (isOpened)
         {
             //시간 측정
