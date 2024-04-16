@@ -17,12 +17,14 @@ public class GameManager : MonoBehaviour
     public GameObject nameText;
     public GameObject endText;
 
+    public Animator endAnim;
+
     // 결과창 
     [Header("결과창이 남아있는 시간")]
     public float resultDelay = 0.5f;
     [Header("실패시 줄어드는 시간")]
     public float penaltyTime = 2.0f;
-    
+
     [Header("실패 시 빨간색으로 깜빡이는 시간")]
     public float penaltyDelay = 0.2f;
 
@@ -34,11 +36,11 @@ public class GameManager : MonoBehaviour
 
     AudioSource audioSource;
     float time = 0.0f;
-    
+
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
         }
@@ -63,14 +65,15 @@ public class GameManager : MonoBehaviour
         if (time >= 30.0f)
         {
             time = 30.0f;
-            Time.timeScale = 0.0f;
+            Invoke("EndGame", 0.3f);
             endPanel.SetActive(true);
+            endAnim.SetBool("EndPanel", true);
         }
     }
 
     public void Matched()
     {
-        if(firstCard.idx == secondCard.idx)
+        if (firstCard.idx == secondCard.idx)
         {
             int userIdx = firstCard.idx % 5;
             audioSource.PlayOneShot(clip);
@@ -83,10 +86,11 @@ public class GameManager : MonoBehaviour
             firstCard.DestroyCard();
             secondCard.DestroyCard();
             cardCount -= 2;
-            if(cardCount == 0)
+            if (cardCount == 0)
             {
-                Time.timeScale = 0.0f;
+                Invoke("EndGame", 0.3f);
                 endPanel.SetActive(true);
+                endAnim.SetBool("EndPanel", true);
             }
         }
         else
@@ -99,7 +103,7 @@ public class GameManager : MonoBehaviour
             // 시간 감소 (2초)
             time += penaltyTime;
             StartCoroutine(ActiveTimePenalty(penaltyDelay));
-            
+
             // 카드 닫기.
             firstCard.CloseCard();
             secondCard.CloseCard();
@@ -120,5 +124,10 @@ public class GameManager : MonoBehaviour
     public void CloseNameText()
     {
         nameText.SetActive(false);
+    }
+
+    public void EndGame()
+    {
+        Time.timeScale = 0.0f;
     }
 }
