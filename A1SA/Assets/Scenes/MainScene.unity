@@ -383,7 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb1870f16e05894094b99f11fcdbeaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: d689b97701fcdd246b5c40bcd5f80d48, type: 3}
+  clip: {fileID: 8300000, guid: c8f2fa9433a0d4652b0821134677122d, type: 3}
 --- !u!4 &160091075
 Transform:
   m_ObjectHideFlags: 0
@@ -958,8 +958,9 @@ GameObject:
   - component: {fileID: 732590644}
   - component: {fileID: 732590643}
   - component: {fileID: 732590645}
+  - component: {fileID: 732590646}
   m_Layer: 5
-  m_Name: Image
+  m_Name: EndImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1041,6 +1042,27 @@ MonoBehaviour:
   m_EffectColor: {r: 0.9030195, g: 1, b: 0.023584902, a: 0.5}
   m_EffectDistance: {x: 10, y: -10}
   m_UseGraphicAlpha: 1
+--- !u!95 &732590646
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732590641}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4102e2c5fd195644e8864954816a307b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1084600622
 GameObject:
   m_ObjectHideFlags: 0
@@ -1078,6 +1100,7 @@ MonoBehaviour:
   resultText: {fileID: 1300381430}
   nameText: {fileID: 484704890}
   endText: {fileID: 690807223}
+  endAnim: {fileID: 732590646}
   clip: {fileID: 8300000, guid: a8d8d623e236749af92988c012d91dae, type: 3}
   resultDelay: 0.7
   penaltyTime: 2
