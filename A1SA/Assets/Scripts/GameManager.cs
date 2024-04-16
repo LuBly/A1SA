@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public float resultDelay = 0.5f;
     [Header("실패시 줄어드는 시간")]
     public float penaltyTime = 2.0f;
-    
+
     [Header("실패 시 빨간색으로 깜빡이는 시간")]
     public float penaltyDelay = 0.2f;
 
@@ -34,11 +34,11 @@ public class GameManager : MonoBehaviour
 
     AudioSource audioSource;
     float time = 0.0f;
-    
+
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
         }
@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
 
     public void Matched()
     {
-        if(firstCard.idx == secondCard.idx)
+        if (firstCard.idx == secondCard.idx)
         {
             int userIdx = firstCard.idx % 5;
             audioSource.PlayOneShot(clip);
@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
             firstCard.DestroyCard();
             secondCard.DestroyCard();
             cardCount -= 2;
-            if(cardCount == 0)
+            if (cardCount == 0)
             {
                 Time.timeScale = 0.0f;
                 endPanel.SetActive(true);
@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
             // 시간 감소 (2초)
             time += penaltyTime;
             StartCoroutine(ActiveTimePenalty(penaltyDelay));
-            
+
             // 카드 닫기.
             firstCard.CloseCard();
             secondCard.CloseCard();
@@ -114,7 +114,6 @@ public class GameManager : MonoBehaviour
 
         matchCount += 1;
 
-        // ī�� �ʱ�ȭ
         firstCard = null;
         secondCard = null;
     }
