@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public Text bestScore;
     public GameObject nameText;
     public GameObject endText;
+    public GameObject penaltyTimeText;
 
     // 결과창 
     [Header("결과창이 남아있는 시간")]
@@ -128,6 +129,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            penaltyTimeText.SetActive(true);
             // 0.5초 동안 timer 색 red로 변경
             nameText.SetActive(true);
             nameText.GetComponent<TextMeshProUGUI>().text = "실패ㅋ";
@@ -163,5 +165,6 @@ public class GameManager : MonoBehaviour
     public void CloseNameText()
     {
         nameText.SetActive(false);
+        penaltyTimeText.SetActive(false);
     }
 }
