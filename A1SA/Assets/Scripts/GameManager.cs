@@ -11,14 +11,20 @@ public class GameManager : MonoBehaviour
     public Card secondCard;
 
     public TextMeshProUGUI timeText;
+
+    public GameObject nameText;
+    public GameObject penaltyTimeText;
+
     public GameObject endPanel;
 
-    public Text resultText;
+    [Header("엔드 패널 텍스트 관련")]
+    public Text matchTryTxt;
+    public Text matchSuccessTxt;
+    public Text reminingTxt;
     public Text nowScore;
     public Text bestScore;
-    public GameObject nameText;
-    public GameObject endText;
-    public GameObject penaltyTimeText;
+
+    public Animator endAnim;
 
     // 결과창 
     [Header("결과창이 남아있는 시간")]
@@ -29,8 +35,11 @@ public class GameManager : MonoBehaviour
     [Header("실패 시 빨간색으로 깜빡이는 시간")]
     public float penaltyDelay = 0.2f;
 
+    // 카드 수 계산 변수
     public int cardCount = 0;
     public int matchCount = 0;
+    public int matchSuccess = 0;
+
     public bool isReady = false;
     public string[] userNames = new string[5];
 
@@ -39,6 +48,8 @@ public class GameManager : MonoBehaviour
 
     string key = "bestScore";
     float time = 0.0f;
+    float reminingTime = 60.0f;
+    int score = 0;
 
 
     private void Awake()
@@ -64,7 +75,9 @@ public class GameManager : MonoBehaviour
             time += Time.deltaTime;
         timeText.text = time.ToString("N2");
 
-        resultText.text = matchCount.ToString();
+        matchTryTxt.text = matchCount.ToString();
+        matchSuccessTxt.text = matchSuccess.ToString();
+        reminingTxt.text = reminingTime.ToString("N2");
         //일정시간 경과시 경고
         if (time >= 20.0f)
         {
@@ -75,10 +88,12 @@ public class GameManager : MonoBehaviour
         }
         if (time >= 60.0f)
         {
-            GameManager.Instance.GameOver();
             time = 60.0f;
-            Time.timeScale = 0.0f;
-            endPanel.SetActive(true);
+            reminingTime = 0.0f;
+            endAnim.SetBool("EndPanel", true);
+            Invoke("GameEnd", 0.3f);
+            TimeScore();
+            GameManager.Instance.GameOver();
         }
     }
 
@@ -97,16 +112,16 @@ public class GameManager : MonoBehaviour
             firstCard.DestroyCard();
             secondCard.DestroyCard();
             cardCount -= 2;
+            score += 5;
+            matchSuccess += 1;
 
             //게임 종료
             if (cardCount == 0)
             {
+                reminingTime -= time;
+                Invoke("GameEnd", 0.3f);
+                TimeScore();
                 GameManager.Instance.GameOver();
-                
-                Time.timeScale = 0.0f;
-                //이번판 점수 저장
-                nowScore.text = time.ToString("N2");
-                endPanel.SetActive(true);
             }
         }
         else
@@ -137,28 +152,26 @@ public class GameManager : MonoBehaviour
         if (PlayerPrefs.HasKey(key))
         {
             float best = PlayerPrefs.GetFloat(key);
-            if (best > time)
+            if (best < score)
             {
-                PlayerPrefs.SetFloat(key, time);
-                bestScore.text = time.ToString("N2");
+                PlayerPrefs.SetFloat(key, score);
+                bestScore.text = score.ToString();
             }
             else
             {
-                bestScore.text = best.ToString("N2");
+                bestScore.text = best.ToString();
 
             }
 
         }
         else
         {
-            PlayerPrefs.SetFloat(key, time);
-            bestScore.text = time.ToString("N2");
+            PlayerPrefs.SetFloat(key, score);
+            bestScore.text = score.ToString();
         }
-        Time.timeScale = 0.0f;
         //이번판 점수 저장
-        nowScore.text = time.ToString("N2");
+        nowScore.text = score.ToString();
         endPanel.SetActive(true);
-
     }
 
     IEnumerator ActiveTimePenalty(float penaltyDelay)
@@ -167,9 +180,43 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(penaltyDelay);
         timeText.color = Color.white;
     }
+
     public void CloseNameText()
     {
         nameText.SetActive(false);
         penaltyTimeText.SetActive(false);
+    }
+
+    public void GameEnd()
+    {
+        Time.timeScale = 0.0f;
+    }
+
+    public void TimeScore()
+    {
+        if (reminingTime >= 30f)
+        {
+            score += 60;
+        }
+        else if (reminingTime >= 25f)
+        {
+            score += 50;
+        }
+        else if (reminingTime >= 20f)
+        {
+            score += 40;
+        }
+        else if (reminingTime >= 15f)
+        {
+            score += 30;
+        }
+        else if (reminingTime >= 10f)
+        {
+            score += 20;
+        }
+        else if (reminingTime >= 5f)
+        {
+            score += 10;
+        }
     }
 }
