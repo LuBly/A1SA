@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public GameObject endPanel;
 
     public Text resultText;
+    public Text nowScore;
+    public Text bestScore;
     public GameObject nameText;
     public GameObject endText;
 
@@ -34,6 +36,7 @@ public class GameManager : MonoBehaviour
     AudioClip clip;
     AudioSource audioSource;
 
+    string key = "bestScore";
     float time = 0.0f;
 
 
@@ -91,23 +94,11 @@ public class GameManager : MonoBehaviour
             firstCard.DestroyCard();
             secondCard.DestroyCard();
             cardCount -= 2;
+
+            //게임 종료
             if (cardCount == 0)
             {
-                //최소 점수 저장
-                if (PlayerPrefs.HasKey("bestScore"))
-                {
-                    float best = PlayerPrefs.GetFloat("bestScore");
-                    if (best > time)
-                    {
-                        PlayerPrefs.SetFloat("bestScore", time);
-                    }
-                    else
-                    {
-                        PlayerPrefs.SetFloat("bestScore", time);
-                    }
-                }
-                Time.timeScale = 0.0f;
-                endPanel.SetActive(true);
+                GameManager.Instance.GameOver();
             }
         }
         else
@@ -131,6 +122,35 @@ public class GameManager : MonoBehaviour
         firstCard = null;
         secondCard = null;
     }
+
+    public void GameOver()
+    {
+        //최소 점수 저장
+        if (PlayerPrefs.HasKey(key))
+        {
+            float best = PlayerPrefs.GetFloat(key);
+            if (best > time)
+            {
+                PlayerPrefs.SetFloat(key, time);
+                bestScore.text = time.ToString("N2");
+            }
+            else
+            {
+                bestScore.text = best.ToString("N2");
+
+            }
+
+        }
+        else
+        {
+            PlayerPrefs.SetFloat(key, time);
+            bestScore.text = time.ToString("N2");
+        }
+        Time.timeScale = 0.0f;
+        nowScore.text = time.ToString("N2");
+        endPanel.SetActive(true);
+    }
+
     IEnumerator ActiveTimePenalty(float penaltyDelay)
     {
         timeText.color = Color.red;
