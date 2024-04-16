@@ -511,13 +511,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfe7b1734a2f86a4e8ad2c17f37dd5a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backImage: {fileID: 5126260913631695231}
   front: {fileID: 7042236563835890561}
   back: {fileID: 2375605360477965204}
   anim: {fileID: 1569008816511853825}
   frontImage: {fileID: 4637553520075974002}
+  backImage: {fileID: 5126260913631695231}
   idx: 0
   clip: {fileID: 8300000, guid: 97188252c75df4336930a0739bc68792, type: 3}
+  CloseTime: 0
 --- !u!95 &1569008816511853825
 Animator:
   serializedVersion: 5
@@ -707,7 +708,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: ade866b16ee1d994bad0d5d9971d3f63, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
