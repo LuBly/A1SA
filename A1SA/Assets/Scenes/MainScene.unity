@@ -1735,6 +1735,7 @@ MonoBehaviour:
   - "\uD574\uC131"
   - "\uBCF4\uADFC"
   - "\uC815\uC11D"
+  clip: {fileID: 8300000, guid: 863a81d41ecad475c852821bb752dcdb, type: 3}
 --- !u!4 &1084600624
 Transform:
   m_ObjectHideFlags: 0
