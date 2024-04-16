@@ -149,7 +149,7 @@ public class GameManager : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(key))
         {
-            float best = PlayerPrefs.GetFloat(key);
+            int best = (int)PlayerPrefs.GetFloat(key);
             if (best < score)
             {
                 PlayerPrefs.SetFloat(key, score);
