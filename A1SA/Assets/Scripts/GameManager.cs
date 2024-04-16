@@ -14,8 +14,12 @@ public class GameManager : MonoBehaviour
     public GameObject endPanel;
 
     public Text resultText;
+    public Text resultText2;
+    public Text reminingTxt;
+    public Text scoreTxt;
     public GameObject nameText;
-    public GameObject endText;
+
+    public Animator endAnim;
 
     // 결과창 
     [Header("결과창이 남아있는 시간")]
@@ -28,13 +32,17 @@ public class GameManager : MonoBehaviour
 
     public int cardCount = 0;
     public int matchCount = 0;
+    public int matchSuccess = 0;
+
+    public AudioClip clip;
 
     public string[] userNames = new string[5];
 
-    AudioClip clip;
     AudioSource audioSource;
 
+    int score = 0;
     float time = 0.0f;
+    float reminingTime = 30.0f;
 
 
     private void Awake()
@@ -48,31 +56,30 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         audioSource = GetComponent<AudioSource>();
-        audioSource.clip = this.clip;
-        audioSource.Play();
-        //시작할때 BGM의 속도 정상화
-        audioSource.pitch = 1.0f;
     }
-
     private void Update()
     {
         time += Time.deltaTime;
         timeText.text = time.ToString("N2");
 
+        //텍스트 형변환
         resultText.text = matchCount.ToString();
+        resultText2.text = matchSuccess.ToString();
+        reminingTxt.text = reminingTime.ToString("N2");
+        scoreTxt.text = score.ToString();
         //일정시간 경과시 경고
         if (time >= 20.0f)
         {
             //Text를 빨간색으로
             timeText.color = Color.red;
-            //BGM Pitch(재생속도)를 1.3로 변경
-            audioSource.pitch = 1.3f;
         }
         if (time >= 30.0f)
         {
             time = 30.0f;
-            Time.timeScale = 0.0f;
+            reminingTime = 0.0f;
+            Invoke("EndGame", 0.3f);
             endPanel.SetActive(true);
+            endAnim.SetBool("EndPanel", true);
         }
     }
 
@@ -80,8 +87,8 @@ public class GameManager : MonoBehaviour
     {
         if (firstCard.idx == secondCard.idx)
         {
-            audioSource.PlayOneShot(clip);
             int userIdx = firstCard.idx % 5;
+            audioSource.PlayOneShot(clip);
             // 0.5초 동안 성공한 user 이름 노출
             nameText.SetActive(true);
             nameText.GetComponent<TextMeshProUGUI>().text = "나는 " + userNames[userIdx];
@@ -91,23 +98,15 @@ public class GameManager : MonoBehaviour
             firstCard.DestroyCard();
             secondCard.DestroyCard();
             cardCount -= 2;
+            matchSuccess += 1;
+            score += 5;
             if (cardCount == 0)
             {
-                //최소 점수 저장
-                if (PlayerPrefs.HasKey("bestScore"))
-                {
-                    float best = PlayerPrefs.GetFloat("bestScore");
-                    if (best > time)
-                    {
-                        PlayerPrefs.SetFloat("bestScore", time);
-                    }
-                    else
-                    {
-                        PlayerPrefs.SetFloat("bestScore", time);
-                    }
-                }
-                Time.timeScale = 0.0f;
+                Invoke("EndGame", 0.3f);
+                reminingTime -= time;
                 endPanel.SetActive(true);
+                endAnim.SetBool("EndPanel", true);
+                TimeScore();
             }
         }
         else
@@ -128,17 +127,43 @@ public class GameManager : MonoBehaviour
 
         matchCount += 1;
 
+        // ī�� �ʱ�ȭ
         firstCard = null;
         secondCard = null;
     }
+
     IEnumerator ActiveTimePenalty(float penaltyDelay)
     {
         timeText.color = Color.red;
         yield return new WaitForSeconds(penaltyDelay);
         timeText.color = Color.white;
     }
+
     public void CloseNameText()
     {
         nameText.SetActive(false);
     }
+
+    public void EndGame()
+    {
+        Time.timeScale = 0.0f;
+    }
+
+    public void TimeScore()
+    {
+        //남은 시간 대비 점수
+        if (reminingTime >= 15.0f)
+        {
+            score += 30;
+        }
+        else if (reminingTime >= 10.0f)
+        {
+            score += 20;
+        }
+        else if (reminingTime >= 5.0f)
+        {
+            score += 10;
+        }
+    }
 }
+
