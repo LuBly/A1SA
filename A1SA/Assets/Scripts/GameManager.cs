@@ -46,9 +46,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1.0f;
-        audioSource = AudioManager.Instance.audioSource;
-        //시작할때 BGM의 속도 정상화
-        audioSource.pitch = 1.0f;
+        audioSource = GetComponent<AudioSource>();
     }
     private void Update()
     {
@@ -61,8 +59,6 @@ public class GameManager : MonoBehaviour
         {
             //Text를 빨간색으로
             timeText.color = Color.red;
-            //BGM Pitch(재생속도)를 1.3로 변경
-            audioSource.pitch = 1.3f;
         }
         if (time >= 30.0f)
         {
