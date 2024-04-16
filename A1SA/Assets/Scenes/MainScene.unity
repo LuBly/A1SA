@@ -287,7 +287,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.158
+  m_Volume: 0.108
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -383,8 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb1870f16e05894094b99f11fcdbeaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
-  clip: {fileID: 8300000, guid: c8f2fa9433a0d4652b0821134677122d, type: 3}
+  clip: {fileID: 8300000, guid: d689b97701fcdd246b5c40bcd5f80d48, type: 3}
 --- !u!4 &160091075
 Transform:
   m_ObjectHideFlags: 0
@@ -1079,12 +1078,12 @@ MonoBehaviour:
   resultText: {fileID: 1300381430}
   nameText: {fileID: 484704890}
   endText: {fileID: 690807223}
+  clip: {fileID: 8300000, guid: a8d8d623e236749af92988c012d91dae, type: 3}
   resultDelay: 0.7
   penaltyTime: 2
   penaltyDelay: 0.2
   cardCount: 0
   matchCount: 0
-  clip: {fileID: 8300000, guid: 46361e1eff277a442aaf302b2779b0eb, type: 3}
   userNames:
   - "\uD604\uD638"
   - "\uC138\uB098"
@@ -1118,7 +1117,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.08
+  m_Volume: 0.69
   m_Pitch: 1
   Loop: 0
   Mute: 0
