@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public Text resultText2;
     public Text reminingTxt;
     public Text scoreTxt;
+    public Text nowScore;
+    public Text bestScore;
     public GameObject nameText;
 
     public Animator endAnim;
@@ -36,11 +38,14 @@ public class GameManager : MonoBehaviour
 
     public AudioClip clip;
 
+    public bool isReady = false;
+
     public string[] userNames = new string[5];
 
     AudioSource audioSource;
-
+    
     int score = 0;
+    string key = "bestScore";
     float time = 0.0f;
     float reminingTime = 30.0f;
 
@@ -59,7 +64,8 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        time += Time.deltaTime;
+        if (isReady)
+            time += Time.deltaTime;
         timeText.text = time.ToString("N2");
 
         //텍스트 형변환
@@ -106,6 +112,7 @@ public class GameManager : MonoBehaviour
                 reminingTime -= time;
                 endPanel.SetActive(true);
                 endAnim.SetBool("EndPanel", true);
+                GameOver();
                 TimeScore();
             }
         }
@@ -130,6 +137,34 @@ public class GameManager : MonoBehaviour
         // ī�� �ʱ�ȭ
         firstCard = null;
         secondCard = null;
+    }
+
+    public void GameOver()
+    {
+        //최소 점수 저장
+        if (PlayerPrefs.HasKey(key))
+        {
+            float best = PlayerPrefs.GetFloat(key);
+            if (best > time)
+            {
+                PlayerPrefs.SetFloat(key, time);
+                bestScore.text = time.ToString("N2");
+            }
+            else
+            {
+                bestScore.text = best.ToString("N2");
+
+            }
+
+        }
+        else
+        {
+            PlayerPrefs.SetFloat(key, time);
+            bestScore.text = time.ToString("N2");
+        }
+        Time.timeScale = 0.0f;
+        nowScore.text = time.ToString("N2");
+        endPanel.SetActive(true);
     }
 
     IEnumerator ActiveTimePenalty(float penaltyDelay)
