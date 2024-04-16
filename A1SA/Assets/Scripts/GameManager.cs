@@ -46,10 +46,13 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1.0f;
-        audioSource = AudioManager.Instance.audioSource;
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = this.clip;
+        audioSource.Play();
         //시작할때 BGM의 속도 정상화
         audioSource.pitch = 1.0f;
     }
+
     private void Update()
     {
         time += Time.deltaTime;
