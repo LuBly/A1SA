@@ -66,12 +66,10 @@ public class GameManager : MonoBehaviour
 
         resultText.text = matchCount.ToString();
         //일정시간 경과시 경고
-        if (time >= 20.0f)
+        if (time >= 50.0f)
         {
             //Text를 빨간색으로
             timeText.color = Color.red;
-            //BGM Pitch(재생속도)를 1.3로 변경
-            audioSource.pitch = 1.3f;
         }
         if (time >= 60.0f)
         {
