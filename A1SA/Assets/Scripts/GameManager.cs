@@ -73,8 +73,9 @@ public class GameManager : MonoBehaviour
             //BGM Pitch(재생속도)를 1.3로 변경
             audioSource.pitch = 1.3f;
         }
-        if (time >= 30.0f)
+        if (time >= 60.0f)
         {
+            GameManager.Instance.GameOver();
             time = 30.0f;
             Time.timeScale = 0.0f;
             endPanel.SetActive(true);
@@ -100,27 +101,8 @@ public class GameManager : MonoBehaviour
             //게임 종료
             if (cardCount == 0)
             {
-                //GameManager.Instance.GameOver();
-                if (PlayerPrefs.HasKey(key))
-                {
-                    float best = PlayerPrefs.GetFloat(key);
-                    if (best < time)
-                    {
-                        PlayerPrefs.SetFloat(key, time);
-                        bestScore.text = time.ToString("N2");
-                    }
-                    else
-                    {
-                        bestScore.text = best.ToString("N2");
-
-                    }
-
-                }
-                else
-                {
-                    PlayerPrefs.SetFloat(key, time);
-                    bestScore.text = time.ToString("N2");
-                }
+                GameManager.Instance.GameOver();
+                
                 Time.timeScale = 0.0f;
                 //이번판 점수 저장
                 nowScore.text = time.ToString("N2");
@@ -152,8 +134,31 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        //최고 점수 저장
-        
+        if (PlayerPrefs.HasKey(key))
+        {
+            float best = PlayerPrefs.GetFloat(key);
+            if (best > time)
+            {
+                PlayerPrefs.SetFloat(key, time);
+                bestScore.text = time.ToString("N2");
+            }
+            else
+            {
+                bestScore.text = best.ToString("N2");
+
+            }
+
+        }
+        else
+        {
+            PlayerPrefs.SetFloat(key, time);
+            bestScore.text = time.ToString("N2");
+        }
+        Time.timeScale = 0.0f;
+        //이번판 점수 저장
+        nowScore.text = time.ToString("N2");
+        endPanel.SetActive(true);
+
     }
 
     IEnumerator ActiveTimePenalty(float penaltyDelay)
