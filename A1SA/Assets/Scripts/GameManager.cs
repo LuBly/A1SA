@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     public Text resultText;
     public GameObject nameText;
     public GameObject endText;
-    public AudioClip clip;
 
     // 결과창 
     [Header("결과창이 남아있는 시간")]
@@ -32,7 +31,9 @@ public class GameManager : MonoBehaviour
 
     public string[] userNames = new string[5];
 
+    AudioClip clip;
     AudioSource audioSource;
+
     float time = 0.0f;
 
 
@@ -92,6 +93,19 @@ public class GameManager : MonoBehaviour
             cardCount -= 2;
             if (cardCount == 0)
             {
+                //최소 점수 저장
+                if (PlayerPrefs.HasKey("bestScore"))
+                {
+                    float best = PlayerPrefs.GetFloat("bestScore");
+                    if (best > time)
+                    {
+                        PlayerPrefs.SetFloat("bestScore", time);
+                    }
+                    else
+                    {
+                        PlayerPrefs.SetFloat("bestScore", time);
+                    }
+                }
                 Time.timeScale = 0.0f;
                 endPanel.SetActive(true);
             }
