@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
         if (time >= 60.0f)
         {
             GameManager.Instance.GameOver();
-            time = 30.0f;
+            time = 60.0f;
             Time.timeScale = 0.0f;
             endPanel.SetActive(true);
         }
