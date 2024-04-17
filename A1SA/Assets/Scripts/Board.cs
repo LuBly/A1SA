@@ -13,32 +13,7 @@ public class Board : MonoBehaviour
     
     private void Start()
     {
-
-        int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
-        GameManager.Instance.cardCount = arr.Length;
-        arr = arr.OrderBy(x => Random.Range(0f, 7f)).ToArray();
-
-        float startX = -dist * 1.5f; // 시작 x 위치 
-        float startY = 0.0f; // 시작 y 위치
-
-
-        for (int i = 0; i < 8; i++)
-        {
-            GameObject go = Instantiate(card, transform);
-
-
-            float x = startX + (i % 4) * dist;
-            float y = startY - (i / 4) * dist;
-
-            
-
-            cardMap.Add(go, new Vector3(x, y, 0));
-            go.GetComponent<Card>().Setting(arr[i]);
-        }
-
-
         SetCard();
-
         StartCoroutine(SuffleCard());
     }
     private void SetCard()
