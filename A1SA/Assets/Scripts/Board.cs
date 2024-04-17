@@ -26,9 +26,9 @@ public class Board : MonoBehaviour
                 float startX = -dist * 1.5f; // 시작 x 위치 
                 float startY = 0.0f; // 시작 y 위치
 
-                arr = new int[] { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
+                arr = new int[] { 0, 0, 1, 1, 2, 2, 3, 3};
                 arr = arr.OrderBy(x => Random.Range(0f, 7f)).ToArray();
-                GameManager.Instance.cardCount = 16;
+                GameManager.Instance.cardCount = 8;
                 for (int i = 0; i < 8; i++)
                 {
                     GameObject go = Instantiate(card, transform);
