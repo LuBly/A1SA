@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = clip;
         reminingTime = stageTime;
+
         switch (stageIdx)
         {
             case 1:
