@@ -173,10 +173,10 @@ public class GameManager : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(key))
         {
-            int best = (int)PlayerPrefs.GetFloat(key);
+            int best = PlayerPrefs.GetInt(key);
             if (best < score)
             {
-                PlayerPrefs.SetFloat(key, score);
+                PlayerPrefs.SetInt(key, score);
                 bestScore.text = score.ToString();
             }
             else
@@ -188,7 +188,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            PlayerPrefs.SetFloat(key, score);
+            PlayerPrefs.SetInt(key, score);
             bestScore.text = score.ToString();
         }
         //이번판 점수 저장
