@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
     string key = "bestScore";
     float time = 0.0f;
     float reminingTime;
+    float stageTime;
     int score = 0;
 
 
@@ -73,20 +74,20 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1.0f;
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = clip;
-
-        switch(stageIdx)
+        reminingTime = stageTime;
+        switch (stageIdx)
         {
             case 1:
-                reminingTime = 30f;
+                stageTime = 30f;
                 break;
             case 2:
-                reminingTime = 40f;
+                stageTime = 40f;
                 break;
             case 3:
-                reminingTime = 50f;
+                stageTime = 50f;
                 break;
             case 4:
-                reminingTime = 60f;
+                stageTime = 60f;
                 break;
         }
     }
@@ -101,14 +102,14 @@ public class GameManager : MonoBehaviour
         matchSuccessTxt.text = matchSuccess.ToString();
         reminingTxt.text = reminingTime.ToString("N2");
         //일정시간 경과시 경고
-        if (time >= reminingTime - 10.0f)
+        if (time >= stageTime - 10.0f)
         {
             //Text를 빨간색으로
             timeText.color = Color.red;
         }
-        if (time >= reminingTime)
+        if (time >= stageTime)
         {
-            time = 30.0f;
+            time = stageTime;
             reminingTime = 0.0f;
             endAnim.SetBool("EndPanel", true);
             Invoke("GameEnd", 0.3f);
