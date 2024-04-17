@@ -77,16 +77,16 @@ public class GameManager : MonoBehaviour
         switch(stageIdx)
         {
             case 1:
-                reminingTime = 30;
+                reminingTime = 30f;
                 break;
             case 2:
-                reminingTime = 40;
+                reminingTime = 40f;
                 break;
             case 3:
-                reminingTime = 50;
+                reminingTime = 50f;
                 break;
             case 4:
-                reminingTime = 60;
+                reminingTime = 60f;
                 break;
         }
     }
@@ -101,12 +101,12 @@ public class GameManager : MonoBehaviour
         matchSuccessTxt.text = matchSuccess.ToString();
         reminingTxt.text = reminingTime.ToString("N2");
         //일정시간 경과시 경고
-        if (time >= 20.0f)
+        if (time >= reminingTime - 10.0f)
         {
             //Text를 빨간색으로
             timeText.color = Color.red;
         }
-        if (time >= 30.0f)
+        if (time >= reminingTime)
         {
             time = 30.0f;
             reminingTime = 0.0f;
