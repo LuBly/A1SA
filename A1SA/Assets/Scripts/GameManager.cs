@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
 
     string key = "bestScore";
     float time = 0.0f;
-    float reminingTime = 60.0f;
+    float reminingTime;
     int score = 0;
 
 
@@ -73,6 +73,22 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1.0f;
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = clip;
+
+        switch(stageIdx)
+        {
+            case 1:
+                reminingTime = 30;
+                break;
+            case 2:
+                reminingTime = 40;
+                break;
+            case 3:
+                reminingTime = 50;
+                break;
+            case 4:
+                reminingTime = 60;
+                break;
+        }
     }
 
     private void Update()
