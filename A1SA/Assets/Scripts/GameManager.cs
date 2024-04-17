@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     public int matchSuccess = 0;
 
     public bool isReady = false;
+    //일시정지 변수
     public bool isPause = false;
 
     public string[] userNames = new string[5];
@@ -143,6 +144,7 @@ public class GameManager : MonoBehaviour
             //게임 종료
             if (cardCount == 0)
             {
+                endAnim.SetBool("EndPanel", true);
                 TimeScore();
                 reminingTime -= time;
                 GameManager.Instance.GameOver();
