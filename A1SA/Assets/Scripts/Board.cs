@@ -23,8 +23,22 @@ public class Board : MonoBehaviour
         switch (stageIdx)
         {
             case 1:
-                // 여기에 Stage1 카드 생성 코드를 작성해주시면 됩니다.
-                // 8장 30초
+                float startX = -dist * 1.5f; // 시작 x 위치 
+                float startY = 0.0f; // 시작 y 위치
+
+                arr = new int[] { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
+                arr = arr.OrderBy(x => Random.Range(0f, 7f)).ToArray();
+                GameManager.Instance.cardCount = 16;
+                for (int i = 0; i < 8; i++)
+                {
+                    GameObject go = Instantiate(card, transform);
+
+                    float x = startX + (i % 4) * dist;
+                    float y = startY - (i / 4) * dist;
+
+                    cardMap.Add(go, new Vector3(x, y, 0));
+                    go.GetComponent<Card>().Setting(arr[i]);
+                }
                 break;
             case 2:
                 // 여기에 Stage2 카드 생성 코드를 작성해주시면 됩니다.
