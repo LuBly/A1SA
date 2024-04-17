@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
 
     string key = "bestScore";
     float time = 0.0f;
-    float reminingTime;
+    float reminingTime = 0.0f;
     float stageTime;
     int score = 0;
 
@@ -74,7 +74,6 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1.0f;
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = clip;
-        reminingTime = stageTime;
 
         switch (stageIdx)
         {
@@ -91,6 +90,8 @@ public class GameManager : MonoBehaviour
                 stageTime = 60f;
                 break;
         }
+
+        reminingTime = stageTime;
     }
 
     private void Update()
@@ -140,8 +141,6 @@ public class GameManager : MonoBehaviour
             //게임 종료
             if (cardCount == 0)
             {
-                reminingTime -= time;
-                Invoke("GameEnd", 0.3f);
                 TimeScore();
                 GameManager.Instance.GameOver();
             }
@@ -171,6 +170,9 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+
+        Invoke("GameEnd", 0.3f);
+
         if (PlayerPrefs.HasKey(key))
         {
             int best = PlayerPrefs.GetInt(key);
@@ -194,6 +196,7 @@ public class GameManager : MonoBehaviour
         //이번판 점수 저장
         nowScore.text = score.ToString();
         endPanel.SetActive(true);
+        reminingTime -= time;
     }
 
     IEnumerator ActiveTimePenalty(float penaltyDelay)
