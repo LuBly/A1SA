@@ -141,6 +141,7 @@ public class GameManager : MonoBehaviour
             //게임 종료
             if (cardCount == 0)
             {
+                endAnim.SetBool("EndPanel", true);
                 TimeScore();
                 reminingTime -= time;
                 GameManager.Instance.GameOver();
