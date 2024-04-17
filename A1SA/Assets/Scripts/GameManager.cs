@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
     public int matchSuccess = 0;
 
     public bool isReady = false;
+    public bool isPause = false;
+
     public string[] userNames = new string[5];
     
     [Header("Success Audio")]
@@ -96,7 +98,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (isReady)
+        if (isReady && !isPause)
             time += Time.deltaTime;
         timeText.text = time.ToString("N2");
 
