@@ -44,17 +44,25 @@ public class Board : MonoBehaviour
                 arr = new int[] { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5 };
                 arr = arr.OrderBy(x => Random.Range(0f, 7f)).ToArray();
                 GameManager.Instance.cardCount = 12;
+
+                // 중앙 정렬을 위해 추가된 변수
+                float totalWidth = 4 * dist; // 가로로 배치되는 카드의 총 길이
+                float totalHeight = 3 * dist; // 세로로 배치되는 카드의 총 높이
+                float start2X = -totalWidth / 2 + dist / 2; // 첫 번째 카드의 가로 위치
+                float start2Y = totalHeight / 2 - dist / 2; // 첫 번째 카드의 세로 위치
+
                 for (int i = 0; i < 12; i++)
                 {
                     GameObject go = Instantiate(card, transform);
 
-                    float x = (i % 4) * dist - 2.1f;
-                    float y = (i / 4) * dist - 3.0f;
+                    float x = start2X + (i % 4) * dist;
+                    float y = start2Y - (i / 4) * dist;
 
                     cardMap.Add(go, new Vector3(x, y, 0));
                     go.GetComponent<Card>().Setting(arr[i]);
                 }
                 break;
+
 
             case 3:
                 arr = new int[]{ 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7};
