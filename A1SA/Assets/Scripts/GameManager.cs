@@ -226,6 +226,16 @@ public class GameManager : MonoBehaviour
         timeText.color = Color.white;
     }
 
+    public float GetStageTime()
+    {
+        return stageTime;
+    }
+
+    public float GetCurrentTime()
+    {
+        return time;
+    }
+
     public void CloseNameText()
     {
         nameText.SetActive(false);
