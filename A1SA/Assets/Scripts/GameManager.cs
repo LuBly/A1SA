@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -46,6 +47,10 @@ public class GameManager : MonoBehaviour
     [Header("Success Audio")]
     public AudioClip clip;
 
+    public int stageIdx;
+    Scene scene;
+
+
     AudioSource audioSource;
 
     string key = "bestScore";
@@ -63,6 +68,8 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        scene = SceneManager.GetActiveScene();
+        stageIdx = scene.buildIndex;
         Time.timeScale = 1.0f;
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = clip;

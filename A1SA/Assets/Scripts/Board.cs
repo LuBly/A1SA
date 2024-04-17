@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Board : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Board : MonoBehaviour
     
     private void Start()
     {
+
         int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
         GameManager.Instance.cardCount = arr.Length;
         arr = arr.OrderBy(x => Random.Range(0f, 7f)).ToArray();
@@ -34,9 +36,50 @@ public class Board : MonoBehaviour
             go.GetComponent<Card>().Setting(arr[i]);
         }
 
+
+        SetCard();
+
         StartCoroutine(SuffleCard());
     }
+    private void SetCard()
+    {
+        int[] arr;
+        int stageIdx = GameManager.Instance.stageIdx;
+        switch (stageIdx)
+        {
+            case 1:
+                // 여기에 Stage1 카드 생성 코드를 작성해주시면 됩니다.
+                // 8장 30초
+                break;
+            case 2:
+                // 여기에 Stage2 카드 생성 코드를 작성해주시면 됩니다.
+                // 12장 40초
+                break;
 
+            case 3:
+                arr = new int[]{ 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7};
+                arr = arr.OrderBy(x => Random.Range(0f, 7f)).ToArray();
+                GameManager.Instance.cardCount = 16;
+                for (int i = 0; i < 16; i++)
+                {
+                    GameObject go = Instantiate(card, transform);
+
+                    float x = (i % 4) * dist - 2.1f;
+                    float y = (i / 4) * dist - 3.0f;
+
+                    cardMap.Add(go, new Vector3(x, y, 0));
+                    go.GetComponent<Card>().Setting(arr[i]);
+                }
+                break;
+
+            case 4:
+                // 여기에 Stage4 카드 생성 코드를 작성해주시면 됩니다.
+                // 20장 60초
+                break;
+
+        }
+        
+    }
     IEnumerator SuffleCard()
     {
         foreach (KeyValuePair<GameObject, Vector3> card in cardMap)
