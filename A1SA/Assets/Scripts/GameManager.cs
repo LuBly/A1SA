@@ -42,8 +42,6 @@ public class GameManager : MonoBehaviour
     public int matchSuccess = 0;
 
     public bool isReady = false;
-    //일시정지 변수
-    public bool isPause = false;
 
     public string[] userNames = new string[5];
     
@@ -99,7 +97,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (isReady && !isPause)
+        if (isReady)
             time += Time.deltaTime;
         timeText.text = time.ToString("N2");
 
