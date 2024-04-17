@@ -9,17 +9,26 @@ public class Board : MonoBehaviour
     float dist = 1.4f;
     float speed = 50.0f;
     Dictionary<GameObject, Vector3> cardMap = new Dictionary<GameObject, Vector3>();
+    
     private void Start()
     {
         int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
         GameManager.Instance.cardCount = arr.Length;
         arr = arr.OrderBy(x => Random.Range(0f, 7f)).ToArray();
-        for (int i = 0; i < 16; i++)
+
+        float startX = -dist * 1.5f; // 시작 x 위치 
+        float startY = 0.0f; // 시작 y 위치
+
+
+        for (int i = 0; i < 8; i++)
         {
             GameObject go = Instantiate(card, transform);
 
-            float x = (i % 4) * dist - 2.1f;
-            float y = (i / 4) * dist - 3.0f;
+
+            float x = startX + (i % 4) * dist;
+            float y = startY - (i / 4) * dist;
+
+            
 
             cardMap.Add(go, new Vector3(x, y, 0));
             go.GetComponent<Card>().Setting(arr[i]);

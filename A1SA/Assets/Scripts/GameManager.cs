@@ -78,14 +78,14 @@ public class GameManager : MonoBehaviour
         matchSuccessTxt.text = matchSuccess.ToString();
         reminingTxt.text = reminingTime.ToString("N2");
         //일정시간 경과시 경고
-        if (time >= 50.0f)
+        if (time >= 20.0f)
         {
             //Text를 빨간색으로
             timeText.color = Color.red;
         }
-        if (time >= 60.0f)
+        if (time >= 30.0f)
         {
-            time = 60.0f;
+            time = 30.0f;
             reminingTime = 0.0f;
             endAnim.SetBool("EndPanel", true);
             Invoke("GameEnd", 0.3f);
