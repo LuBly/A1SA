@@ -142,6 +142,7 @@ public class GameManager : MonoBehaviour
             if (cardCount == 0)
             {
                 TimeScore();
+                reminingTime -= time;
                 GameManager.Instance.GameOver();
             }
         }
@@ -196,7 +197,6 @@ public class GameManager : MonoBehaviour
         //이번판 점수 저장
         nowScore.text = score.ToString();
         endPanel.SetActive(true);
-        reminingTime -= time;
     }
 
     IEnumerator ActiveTimePenalty(float penaltyDelay)
