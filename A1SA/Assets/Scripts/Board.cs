@@ -10,6 +10,7 @@ public class Board : MonoBehaviour
     float dist = 1.4f;
     float speed = 50.0f;
     Dictionary<GameObject, Vector3> cardMap = new Dictionary<GameObject, Vector3>();
+    
     private void Start()
     {
         SetCard();
