@@ -1530,6 +1530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   i_dataArr: 0000000001000000000000000000000000000000
   dataArr: []
+  DeleteAllData: 1
 --- !u!1 &887661146
 GameObject:
   m_ObjectHideFlags: 0
