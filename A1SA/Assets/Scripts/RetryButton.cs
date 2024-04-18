@@ -4,9 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class RetryButton : MonoBehaviour
 {
-
     public GameObject scorePanel;
-
     public GameObject StagePanel;
 
     public void Retry()

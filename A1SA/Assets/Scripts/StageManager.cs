@@ -12,7 +12,7 @@ public class StageManager : MonoBehaviour
     [Header("데이터 체크")]
     public int[] i_dataArr = new int[5];
     public string[] dataArr;
-
+    public bool DeleteAllData = false;
     string key = "StageData";
     private void Awake()
     {
@@ -25,8 +25,11 @@ public class StageManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        //For Dev
-        //PlayerPrefs.DeleteKey(key);
+
+        if (DeleteAllData)
+        {
+            PlayerPrefs.DeleteAll();
+        }
     }
 
     public void LoadData()
