@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,6 +6,8 @@ public class RetryButton : MonoBehaviour
 {
 
     public GameObject scorePanel;
+
+    public GameObject StagePanel;
 
     public void Retry()
     {
@@ -44,5 +47,11 @@ public class RetryButton : MonoBehaviour
     public void ScorePanelClose()
     {
         scorePanel.SetActive(false);
+    }
+    
+    public void OpenStagePanel()
+    {
+        if (SceneManager.GetActiveScene().buildIndex != 0) return;
+        StagePanel.SetActive(true);
     }
 }

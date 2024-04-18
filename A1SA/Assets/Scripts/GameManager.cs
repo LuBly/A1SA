@@ -204,9 +204,7 @@ public class GameManager : MonoBehaviour
             {
                 bestScore.text = best.ToString();
                 mainBestScore.text = best.ToString();
-
             }
-
         }
         else
         {
@@ -244,6 +242,14 @@ public class GameManager : MonoBehaviour
 
     public void GameEnd()
     {
+        // 클리어 여부 저장
+        // 클리어
+        if (time > 0f)
+        {
+            Debug.Log("저장");
+            if (stageIdx <= 4)
+                StageManager.Instance.SaveData(true, stageIdx + 1);
+        }
         Time.timeScale = 0.0f;
     }
 
