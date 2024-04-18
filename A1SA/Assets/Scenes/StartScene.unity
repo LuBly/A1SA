@@ -932,8 +932,8 @@ RectTransform:
   - {fileID: 631619295}
   - {fileID: 1035639182}
   - {fileID: 2028088420}
-  - {fileID: 395274909}
   - {fileID: 887661147}
+  - {fileID: 395274909}
   - {fileID: 551604900}
   - {fileID: 909151468}
   - {fileID: 162583982}
@@ -1094,7 +1094,7 @@ GameObject:
   - component: {fileID: 631619297}
   - component: {fileID: 631619296}
   m_Layer: 5
-  m_Name: Title
+  m_Name: TitleText_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1542,7 +1542,7 @@ GameObject:
   - component: {fileID: 887661149}
   - component: {fileID: 887661148}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: TitleText_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1587,7 +1587,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<\uC557! \uB2A6\uC5C8\uB2F9!>"
+  m_text: "<\uC557! \uB2A6\uC5C8\uB2F9! \uB300\uD45C>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 71cec3e7e464ab2468eddee97ce4e6c4, type: 2}
   m_sharedMaterial: {fileID: -5135667749180660186, guid: 71cec3e7e464ab2468eddee97ce4e6c4, type: 2}
@@ -2050,7 +2050,7 @@ GameObject:
   - component: {fileID: 1035639184}
   - component: {fileID: 1035639183}
   m_Layer: 5
-  m_Name: Title (1)
+  m_Name: TitleText_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3101,7 +3101,7 @@ GameObject:
   - component: {fileID: 2028088422}
   - component: {fileID: 2028088421}
   m_Layer: 5
-  m_Name: Title (2)
+  m_Name: TitleText_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
