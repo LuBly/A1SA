@@ -638,6 +638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb1870f16e05894094b99f11fcdbeaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
   clip: {fileID: 8300000, guid: 1c1682c28c3b3442fa3de32964f6c171, type: 3}
 --- !u!4 &160091075
 Transform:
@@ -854,7 +855,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7745f785eb69c743b092c04cec06ee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scorePanel: {fileID: 1081189955}
+  scorePanel: {fileID: 0}
+  StagePanel: {fileID: 0}
 --- !u!114 &191901811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1239,6 +1241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scorePanel: {fileID: 1081189955}
+  StagePanel: {fileID: 0}
 --- !u!114 &339800036
 MonoBehaviour:
   m_ObjectHideFlags: 0
