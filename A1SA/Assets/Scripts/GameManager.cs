@@ -188,7 +188,6 @@ public class GameManager : MonoBehaviour
             else
             {
                 bestScore.text = best.ToString();
-
             }
 
         }
@@ -200,6 +199,14 @@ public class GameManager : MonoBehaviour
         //이번판 점수 저장
         nowScore.text = score.ToString();
         endPanel.SetActive(true);
+
+        // 클리어 여부 저장
+        // 클리어
+        if(time > 0f)
+        {
+            if(stageIdx <= 4)
+                StageManager.Instance.SaveData(true, stageIdx + 1);
+        }
     }
 
     IEnumerator ActiveTimePenalty(float penaltyDelay)

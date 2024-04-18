@@ -43,6 +43,9 @@ public class StageUIController : MonoBehaviour
         // text.Color = 0 0 0 255
         stageTxts[idx].color = new Color32(0, 0, 0, 255);
 
+        // 버튼 Image.Color = 255 255 255 255
+        stageBtns[idx].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+
         // 좌측 상단 image활성화[왕관]
         clearFailImg[idx].sprite = clear;
 

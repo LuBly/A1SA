@@ -35,6 +35,7 @@ public class StageManager : MonoBehaviour
         if (!PlayerPrefs.HasKey(key))
         {
             //idx 0[다른 Scene에서 접근하기 용이하게 더미 값 입력] 1 2 3 4 => Stage별 참, 거짓 판별
+            // 한번에 모든 데이터를 관리하기에 좀 어려움이 있음.
             string initData = "0,1,0,0,0";
             PlayerPrefs.SetString(key, initData);
         }
@@ -46,12 +47,26 @@ public class StageManager : MonoBehaviour
         }
     }
 
-    public void SaveData()
+    public void SaveData(bool isOpen, int idx)
     {
-        string data = "";
+        LoadData();
+        string data = "0,";
         for(int k = 1; k < i_dataArr.Length; k++)
         {
+            if(k == idx)
+            {
+                if (isOpen)
+                {
+                    dataArr[k] = "1";
+                }
+                else
+                {
+                    dataArr[k] = "0";
+                }
+            }
+
             data += dataArr[k];
+                
             if(k < i_dataArr.Length - 1)
             {
                 data += ",";
