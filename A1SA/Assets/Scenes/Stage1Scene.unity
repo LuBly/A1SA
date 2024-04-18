@@ -3125,6 +3125,7 @@ MonoBehaviour:
   reminingTxt: {fileID: 124845638}
   nowScore: {fileID: 1269481219}
   bestScore: {fileID: 1374896108}
+  nextBtn: {fileID: 934402359}
   endAnim: {fileID: 732590646}
   resultDelay: 0.7
   penaltyTime: 2

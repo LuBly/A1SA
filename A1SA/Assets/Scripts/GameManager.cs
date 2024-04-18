@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     public Text reminingTxt;
     public Text nowScore;
     public Text bestScore;
-
+    public GameObject nextBtn;
     public Animator endAnim;
 
     // 결과창 
@@ -244,10 +244,13 @@ public class GameManager : MonoBehaviour
     {
         // 클리어 여부 저장
         // 클리어
-        if (time > 0f)
+        if (time < stageTime)
         {
-            if (stageIdx <= 4)
+            if (stageIdx < 4)
+            {
                 StageManager.Instance.SaveData(true, stageIdx + 1);
+            }
+            nextBtn.SetActive(true);
         }
         Time.timeScale = 0.0f;
     }
