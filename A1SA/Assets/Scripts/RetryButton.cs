@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class RetryButton : MonoBehaviour
 {
+
+    public GameObject scorePanel;
+
     public void Retry()
     {
         SceneManager.LoadScene("MainScene");
@@ -27,8 +30,19 @@ public class RetryButton : MonoBehaviour
     {
         SceneManager.LoadScene("Stage3Scene");
     }
+
     public void GoStage4()
     {
         SceneManager.LoadScene("Stage4Scene");
+    }
+
+    public void ScorePanel()
+    {
+        scorePanel.SetActive(true);
+    }
+
+    public void ScorePanelClose()
+    {
+        scorePanel.SetActive(false);
     }
 }
