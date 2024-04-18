@@ -187,14 +187,6 @@ public class GameManager : MonoBehaviour
     {
         Invoke("GameEnd", 0.3f);
         endPanel.SetActive(true);
-
-        // 클리어 여부 저장
-        // 클리어
-        if (time > 0f)
-        {
-            if (stageIdx <= 4)
-                StageManager.Instance.SaveData(true, stageIdx + 1);
-        }
     }
 
     public void BestScore()
@@ -250,6 +242,14 @@ public class GameManager : MonoBehaviour
 
     public void GameEnd()
     {
+        // 클리어 여부 저장
+        // 클리어
+        if (time > 0f)
+        {
+            Debug.Log("저장");
+            if (stageIdx <= 4)
+                StageManager.Instance.SaveData(true, stageIdx + 1);
+        }
         Time.timeScale = 0.0f;
     }
 

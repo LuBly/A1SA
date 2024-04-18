@@ -25,7 +25,8 @@ public class StageManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        PlayerPrefs.DeleteKey(key);
+        //For Dev
+        //PlayerPrefs.DeleteKey(key);
     }
 
     public void LoadData()
