@@ -855,7 +855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7745f785eb69c743b092c04cec06ee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scorePanel: {fileID: 0}
+  scorePanel: {fileID: 1081189955}
   StagePanel: {fileID: 0}
 --- !u!114 &191901811
 MonoBehaviour:
