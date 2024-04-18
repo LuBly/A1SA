@@ -712,6 +712,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scorePanel: {fileID: 0}
+  StagePanel: {fileID: 0}
 --- !u!114 &173065361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1853,6 +1854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scorePanel: {fileID: 1850689134}
+  StagePanel: {fileID: 0}
 --- !u!114 &832181401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2260,6 +2262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scorePanel: {fileID: 0}
+  StagePanel: {fileID: 0}
 --- !u!114 &934402362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2682,6 +2685,7 @@ MonoBehaviour:
   reminingTxt: {fileID: 124845638}
   nowScore: {fileID: 1269481219}
   bestScore: {fileID: 1374896108}
+  nextBtn: {fileID: 934402359}
   endAnim: {fileID: 732590646}
   resultDelay: 0.7
   penaltyTime: 2
@@ -4480,6 +4484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scorePanel: {fileID: 1850689134}
+  StagePanel: {fileID: 0}
 --- !u!114 &1978340087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4766,6 +4771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scorePanel: {fileID: 0}
+  StagePanel: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

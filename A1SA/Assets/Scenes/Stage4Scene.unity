@@ -871,6 +871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scorePanel: {fileID: 0}
+  StagePanel: {fileID: 0}
 --- !u!114 &173065361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3200,6 +3201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scorePanel: {fileID: 0}
+  StagePanel: {fileID: 0}
 --- !u!114 &1020894441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3416,6 +3418,7 @@ MonoBehaviour:
   reminingTxt: {fileID: 124845638}
   nowScore: {fileID: 1269481219}
   bestScore: {fileID: 1374896108}
+  nextBtn: {fileID: 0}
   endAnim: {fileID: 732590646}
   resultDelay: 0.7
   penaltyTime: 2
@@ -4773,6 +4776,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scorePanel: {fileID: 1859197641}
+  StagePanel: {fileID: 0}
 --- !u!1 &1392796075
 GameObject:
   m_ObjectHideFlags: 0
@@ -5815,6 +5819,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scorePanel: {fileID: 1859197641}
+  StagePanel: {fileID: 0}
 --- !u!1 &1667704852
 GameObject:
   m_ObjectHideFlags: 0
@@ -6898,6 +6903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scorePanel: {fileID: 0}
+  StagePanel: {fileID: 0}
 --- !u!1 &2058098063
 GameObject:
   m_ObjectHideFlags: 0
