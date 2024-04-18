@@ -145,5 +145,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9167166eba731c441acf5d54a7dd4f0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseImg: {fileID: 21300000, guid: ee58dad670da94f4cb56248fbd4ee995, type: 3}
-  playImg: {fileID: 21300000, guid: 84cd1b1cdcaf07d4ba1157479b793185, type: 3}
+  stopPanel: {fileID: 0}
