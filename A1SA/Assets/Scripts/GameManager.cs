@@ -246,7 +246,6 @@ public class GameManager : MonoBehaviour
         // 클리어
         if (time > 0f)
         {
-            Debug.Log("저장");
             if (stageIdx <= 4)
                 StageManager.Instance.SaveData(true, stageIdx + 1);
         }
