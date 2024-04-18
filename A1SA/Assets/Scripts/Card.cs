@@ -46,7 +46,7 @@ public class Card : MonoBehaviour
     public void Setting(int num)
     {
         idx = num;
-        frontImage.sprite = Resources.Load<Sprite>($"rtan{idx}");
+        frontImage.sprite = Resources.Load<Sprite>($"user{idx}");
     }
 
 
