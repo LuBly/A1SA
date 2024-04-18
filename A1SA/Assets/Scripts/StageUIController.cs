@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +14,13 @@ public class StageUIController : MonoBehaviour
     private void Start()
     {
         CheckStage();
+        
+        for(int idx = 1; idx < stageBtns.Length; idx++)
+        {
+            int id = idx;
+            // 람다형식
+            stageBtns[idx].GetComponent<Button>().onClick.AddListener(() => StageManager.Instance.LoadScene(id));
+        }
     }
 
     public void CheckStage()
@@ -23,7 +28,7 @@ public class StageUIController : MonoBehaviour
         // SaveData update
         StageManager.Instance.LoadData();
 
-        for (int idx = 1; idx < StageManager.Instance.dataArr.Length; idx++)
+        for (int idx = 1; idx < stageBtns.Length; idx++)
         {
             // 클리어라면 클리어 셋팅 적용
             if (StageManager.Instance.i_dataArr[idx] == 1)

@@ -187,6 +187,14 @@ public class GameManager : MonoBehaviour
     {
         Invoke("GameEnd", 0.3f);
         endPanel.SetActive(true);
+
+        // 클리어 여부 저장
+        // 클리어
+        if (time > 0f)
+        {
+            if (stageIdx <= 4)
+                StageManager.Instance.SaveData(true, stageIdx + 1);
+        }
     }
 
     public void BestScore()
@@ -205,7 +213,6 @@ public class GameManager : MonoBehaviour
                 bestScore.text = best.ToString();
                 mainBestScore.text = best.ToString();
             }
-
         }
         else
         {
@@ -215,15 +222,6 @@ public class GameManager : MonoBehaviour
         }
         //이번판 점수 저장
         nowScore.text = score.ToString();
-        endPanel.SetActive(true);
-
-        // 클리어 여부 저장
-        // 클리어
-        if(time > 0f)
-        {
-            if(stageIdx <= 4)
-                StageManager.Instance.SaveData(true, stageIdx + 1);
-        }
         mainNowScore.text = score.ToString();
     }
 
