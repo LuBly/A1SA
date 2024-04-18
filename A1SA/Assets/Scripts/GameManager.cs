@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public Card firstCard;
     public Card secondCard;
 
+
+    [Header("메인 화면 관련")]
     public TextMeshProUGUI timeText;
 
     public GameObject nameText;
@@ -18,7 +20,10 @@ public class GameManager : MonoBehaviour
 
     public GameObject endPanel;
 
-    [Header("엔드 패널 텍스트 관련")]
+    public Text mainNowScore;
+    public Text mainBestScore;
+
+    [Header("엔드 패널 관련")]
     public Text matchTryTxt;
     public Text matchSuccessTxt;
     public Text reminingTxt;
@@ -42,7 +47,6 @@ public class GameManager : MonoBehaviour
     public int matchSuccess = 0;
 
     public bool isReady = false;
-    public bool isPause = false;
 
     public string[] userNames = new string[5];
     
@@ -55,7 +59,9 @@ public class GameManager : MonoBehaviour
 
     AudioSource audioSource;
 
-    string key = "bestScore";
+    // 최고 점수 배열
+    string[] key = { "bestScore","BestScore1", "BestScore2", "BestScore3", "BestScore4" };
+
     float time = 0.0f;
     float reminingTime = 0.0f;
     float stageTime;
@@ -98,13 +104,18 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (isReady && !isPause)
+        if (isReady)
             time += Time.deltaTime;
         timeText.text = time.ToString("N2");
 
+        // 엔드 패널 텍스트 형변환
         matchTryTxt.text = matchCount.ToString();
         matchSuccessTxt.text = matchSuccess.ToString();
         reminingTxt.text = reminingTime.ToString("N2");
+
+        // 최고 점수 로직
+        BestScore();
+
         //일정시간 경과시 경고
         if (time >= stageTime - 10.0f)
         {
@@ -118,7 +129,7 @@ public class GameManager : MonoBehaviour
             endAnim.SetBool("EndPanel", true);
             Invoke("GameEnd", 0.3f);
             TimeScore();
-            GameManager.Instance.GameOver();
+            GameOver();
         }
     }
 
@@ -143,10 +154,10 @@ public class GameManager : MonoBehaviour
             //게임 종료
             if (cardCount == 0)
             {
+                reminingTime -= time;
                 endAnim.SetBool("EndPanel", true);
                 TimeScore();
-                reminingTime -= time;
-                GameManager.Instance.GameOver();
+                GameOver();
             }
         }
         else
@@ -174,27 +185,33 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-
         Invoke("GameEnd", 0.3f);
+        endPanel.SetActive(true);
+    }
 
-        if (PlayerPrefs.HasKey(key))
+    public void BestScore()
+    {
+        if (PlayerPrefs.HasKey(key[stageIdx]))
         {
-            int best = PlayerPrefs.GetInt(key);
+            int best = PlayerPrefs.GetInt(key[stageIdx]);
             if (best < score)
             {
-                PlayerPrefs.SetInt(key, score);
+                PlayerPrefs.SetInt(key[stageIdx], score);
                 bestScore.text = score.ToString();
+                mainBestScore.text = score.ToString();
             }
             else
             {
                 bestScore.text = best.ToString();
+                mainBestScore.text = best.ToString();
             }
 
         }
         else
         {
-            PlayerPrefs.SetInt(key, score);
+            PlayerPrefs.SetInt(key[stageIdx], score);
             bestScore.text = score.ToString();
+            mainBestScore.text = score.ToString();
         }
         //이번판 점수 저장
         nowScore.text = score.ToString();
@@ -207,6 +224,7 @@ public class GameManager : MonoBehaviour
             if(stageIdx <= 4)
                 StageManager.Instance.SaveData(true, stageIdx + 1);
         }
+        mainNowScore.text = score.ToString();
     }
 
     IEnumerator ActiveTimePenalty(float penaltyDelay)
@@ -214,6 +232,16 @@ public class GameManager : MonoBehaviour
         timeText.color = Color.red;
         yield return new WaitForSeconds(penaltyDelay);
         timeText.color = Color.white;
+    }
+
+    public float GetStageTime()
+    {
+        return stageTime;
+    }
+
+    public float GetCurrentTime()
+    {
+        return time;
     }
 
     public void CloseNameText()
