@@ -1,8 +1,10 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class RetryButton : MonoBehaviour
 {
+    public GameObject StagePanel;
     public void Retry()
     {
         SceneManager.LoadScene("MainScene");
@@ -30,5 +32,10 @@ public class RetryButton : MonoBehaviour
     public void GoStage4()
     {
         SceneManager.LoadScene("Stage4Scene");
+    }
+    public void OpenStagePanel()
+    {
+        if (SceneManager.GetActiveScene().buildIndex != 0) return;
+        StagePanel.SetActive(true);
     }
 }
